@@ -1,0 +1,14 @@
+
+<div class="card">
+  <h2 style="margin-top:0">Fleet Performance Analytics</h2>
+  <div class="kpi-cards">
+    <div class="kpi"><div>Maintenance Cost (mock)</div><div class="val">₹ {{ report.metrics.costAnalysis | number:'1.0-0' }}</div></div>
+    <div class="kpi"><div>Safety Performance (mock)</div><div class="val">{{ report.metrics.safetyPerformance }} / 100</div></div>
+    <div class="kpi"><div>Downtime (hrs)</div><div class="val">{{ report.metrics.downtimeHours }}</div></div>
+    <div class="kpi"><div>Generated</div><div class="val">{{ report.generatedDate }}</div></div>
+  </div>
+  <div class="form-actions" style="margin-top:1rem">
+    <button class="btn" (click)="regenerate()">Regenerate</button>
+    <button class="btn accent" (click)="export()">Export CSV</button>
+  </div>
+</div>

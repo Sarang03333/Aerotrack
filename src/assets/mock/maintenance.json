@@ -1,0 +1,26 @@
+[
+  {
+    "taskID": "MT-1001",
+    "aircraftID": "AT-1001",
+    "scheduledDate": "2025-12-17",
+    "status": "PENDING"
+  },
+  {
+    "taskID": "MT-1002",
+    "aircraftID": "AT-3001",
+    "scheduledDate": "2025-12-18",
+    "status": "IN_PROGRESS"
+  },
+  {
+    "taskID": "MT-1003",
+    "aircraftID": "AT-2001",
+    "scheduledDate": "2025-12-20",
+    "status": "COMPLETED"
+  },
+  {
+    "taskID": "MT-1004",
+    "aircraftID": "AT-3002",
+    "scheduledDate": "2025-12-16",
+    "status": "PENDING"
+  }
+]

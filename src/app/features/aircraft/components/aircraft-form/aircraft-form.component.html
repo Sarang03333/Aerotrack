@@ -1,0 +1,11 @@
+
+<div class="card">
+  <h2 style="margin-top:0">{{ isEdit ? 'Edit Aircraft' : 'Register New Aircraft' }}</h2>
+  <div class="grid">
+    <div class="col-6"><label>Aircraft ID</label><input class="input" type="text" placeholder="Format: AA-0000" [formControl]="form.controls.aircraftID"><small style="color:#dc3545" *ngIf="form.controls.aircraftID.invalid && form.controls.aircraftID.touched">Valid ID like AT-1001 is required</small></div>
+    <div class="col-6"><label>Model</label><input class="input" type="text" placeholder="e.g., Boeing 737-800" [formControl]="form.controls.model"><small style="color:#dc3545" *ngIf="form.controls.model.invalid && form.controls.model.touched">Model name is required</small></div>
+    <div class="col-6"><label>Category</label><select [formControl]="form.controls.category"><option *ngFor="let c of categories" [value]="c">{{c}}</option></select></div>
+    <div class="col-6"><label>Compliance Status</label><select [formControl]="form.controls.complianceStatus"><option *ngFor="let c of compliances" [value]="c">{{c}}</option></select></div>
+  </div>
+  <div class="form-actions"><button class="btn" (click)="submit()">{{ isEdit ? 'Save Changes' : 'Register Aircraft' }}</button><a class="btn secondary" routerLink="/aircraft">Cancel</a></div>
+</div>

@@ -1,0 +1,30 @@
+[
+  {
+    "partID": "SP-1001",
+    "name": "Hydraulic Pump",
+    "quantityAvailable": 2,
+    "reorderLevel": 5,
+    "lastUpdated": "2025-12-15"
+  },
+  {
+    "partID": "SP-1002",
+    "name": "Avionics Module",
+    "quantityAvailable": 12,
+    "reorderLevel": 8,
+    "lastUpdated": "2025-12-10"
+  },
+  {
+    "partID": "SP-1003",
+    "name": "Landing Gear Bolt",
+    "quantityAvailable": 50,
+    "reorderLevel": 25,
+    "lastUpdated": "2025-12-11"
+  },
+  {
+    "partID": "SP-1004",
+    "name": "Fuel Filter",
+    "quantityAvailable": 4,
+    "reorderLevel": 10,
+    "lastUpdated": "2025-12-12"
+  }
+]

@@ -1,0 +1,28 @@
+
+<div class="toolbar">
+  <div class="search-filters">
+    <input class="input" type="text" placeholder="Search by AuditID / Aircraft / Findings" [(ngModel)]="term" (input)="refresh()" />
+    <input class="input" type="text" placeholder="Filter by AircraftID" [(ngModel)]="aircraftFilter" (input)="refresh()" />
+    <button class="btn secondary" (click)="clear()">Reset</button>
+  </div>
+  <div style="display:flex; gap:.5rem;">
+    <a class="btn" routerLink="/audit/new">+ New Audit</a>
+    <button class="btn accent" (click)="export()">Export Compliance CSV</button>
+  </div>
+</div>
+<div class="card">
+  <table class="table">
+    <thead><tr><th>Audit ID</th><th>Aircraft ID</th><th>Findings</th><th>Date</th><th>Actions</th></tr></thead>
+    <tbody>
+      <tr *ngFor="let x of logs">
+        <td>{{ x.auditID }}</td><td>{{ x.aircraftID }}</td><td>{{ x.findings }}</td><td>{{ x.date }}</td>
+        <td>
+          <a class="btn secondary" [routerLink]="['/audit', x.auditID, 'edit']">Edit</a>
+          <button class="btn" (click)="resolve(x.auditID)">Mark Resolved</button>
+          <button class="btn danger" (click)="remove(x.auditID)">Delete</button>
+        </td>
+      </tr>
+      <tr *ngIf="logs.length===0"><td colspan="5" style="text-align:center; color:var(--muted)">No audit logs found</td></tr>
+    </tbody>
+  </table>
+</div>

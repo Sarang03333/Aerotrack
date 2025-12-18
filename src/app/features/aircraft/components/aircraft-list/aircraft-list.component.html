@@ -1,0 +1,37 @@
+
+<div class="toolbar">
+  <div class="search-filters">
+    <input class="input" type="text" placeholder="Search by ID or model" [(ngModel)]="term" (input)="refresh()" />
+    <select [(ngModel)]="category" (change)="refresh()">
+      <option value="">All Categories</option>
+      <option *ngFor="let c of categories" [value]="c">{{c}}</option>
+    </select>
+    <select [(ngModel)]="compliance" (change)="refresh()">
+      <option value="">All Compliance</option>
+      <option *ngFor="let c of compliances" [value]="c">{{c}}</option>
+    </select>
+    <button class="btn secondary" (click)="clearFilters()">Reset</button>
+  </div>
+  <a class="btn" routerLink="/aircraft/new">+ Add Aircraft</a>
+</div>
+<div class="card">
+  <table class="table">
+    <thead><tr><th>Aircraft ID</th><th>Model</th><th>Category</th><th>Compliance</th><th>Last Service</th><th>Actions</th></tr></thead>
+    <tbody>
+      <tr *ngFor="let a of aircraft">
+        <td><a class="link" [routerLink]="['/aircraft', a.aircraftID]">{{a.aircraftID}}</a></td>
+        <td>{{a.model}}</td>
+        <td>{{a.category}}</td>
+        <td>
+          <span class="badge" [ngClass]="{ 'ok': a.complianceStatus==='Compliant', 'warn': a.complianceStatus==='Pending', 'err': a.complianceStatus==='Non-Compliant' }">{{a.complianceStatus}}</span>
+        </td>
+        <td>{{ lastServiceDate(a) }}</td>
+        <td>
+          <a class="btn secondary" [routerLink]="['/aircraft', a.aircraftID, 'edit']">Edit</a>
+          <button class="btn danger" (click)="remove(a.aircraftID)">Delete</button>
+        </td>
+      </tr>
+      <tr *ngIf="aircraft.length===0"><td colspan="6" style="text-align:center; color:var(--muted)">No aircraft found</td></tr>
+    </tbody>
+  </table>
+</div>

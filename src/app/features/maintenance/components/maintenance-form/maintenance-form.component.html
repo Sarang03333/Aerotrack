@@ -1,0 +1,11 @@
+
+<div class="card">
+  <h2 style="margin-top:0">{{ isEdit ? 'Edit Task' : 'Create Maintenance Task' }}</h2>
+  <div class="grid">
+    <div class="col-4"><label>Task ID</label><input class="input" type="text" placeholder="Format: AA-0000" [formControl]="form.controls.taskID"><small style="color:#dc3545" *ngIf="form.controls.taskID.invalid && form.controls.taskID.touched">Valid ID like MT-1001 is required</small></div>
+    <div class="col-4"><label>Aircraft ID</label><select [formControl]="form.controls.aircraftID"><option value="">Select Aircraft</option><option *ngFor="let id of aircraftIDs" [value]="id">{{id}}</option></select></div>
+    <div class="col-4"><label>Scheduled Date</label><input class="input" type="date" [formControl]="form.controls.scheduledDate"></div>
+    <div class="col-4"><label>Status</label><select [formControl]="form.controls.status"><option *ngFor="let s of statuses" [value]="s">{{s}}</option></select></div>
+  </div>
+  <div class="form-actions"><button class="btn" (click)="submit()">{{ isEdit ? 'Save Changes' : 'Create Task' }}</button><a class="btn secondary" routerLink="/maintenance">Cancel</a></div>
+</div>

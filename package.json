@@ -1,0 +1,28 @@
+{
+  "name": "aero-track",
+  "version": "0.2.0",
+  "private": true,
+  "scripts": {
+    "start": "ng serve",
+    "build": "ng build"
+  },
+  "dependencies": {
+    "@angular/animations": "^18.2.14",
+    "@angular/common": "^18.2.14",
+    "@angular/forms": "^18.2.14",
+    "@angular/platform-browser": "^18.2.14",
+    "@angular/router": "^18.2.14",
+    "chart.js": "^4.5.1",
+    "rxjs": "^7.8.1"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^18.2.21",
+    "@angular/cli": "^18.2.21",
+    "@angular/compiler": "^18.2.14",
+    "@angular/compiler-cli": "^18.2.14",
+    "@angular/core": "^18.2.14",
+    "@angular/platform-browser-dynamic": "^18.2.14",
+    "typescript": "5.5",
+    "zone.js": "^0.14.10"
+  }
+}

@@ -1,0 +1,15 @@
+
+<div class="card" *ngIf="aircraft; else notfound">
+  <div style="display:flex; justify-content:space-between; align-items:center;"><h2 style="margin:0">{{ aircraft.aircraftID }} · {{ aircraft.model }}</h2><a class="btn secondary" [routerLink]="['/aircraft', aircraft.aircraftID, 'edit']">Edit</a></div>
+  <p style="margin:.25rem 0">Category: <strong>{{ aircraft.category }}</strong></p>
+  <p style="margin:.25rem 0">Compliance: <span class="badge" [ngClass]="{ 'ok': aircraft.complianceStatus==='Compliant', 'warn': aircraft.complianceStatus==='Pending', 'err': aircraft.complianceStatus==='Non-Compliant' }">{{ aircraft.complianceStatus }}</span></p>
+  <h3>Service History</h3>
+  <table class="table"><thead><tr><th>Date</th><th>Description</th><th>Performed By</th></tr></thead><tbody>
+    <tr *ngFor="let e of aircraft.serviceHistory"><td>{{ e.date }}</td><td>{{ e.description }}</td><td>{{ e.performedBy }}</td></tr>
+    <tr *ngIf="aircraft.serviceHistory.length===0"><td colspan="3" style="text-align:center; color:var(--muted)">No service history yet</td></tr>
+  </tbody></table>
+  <h3>Add Service Event</h3>
+  <div class="grid"><div class="col-3"><label>Date</label><input class="input" type="date" [(ngModel)]="date"></div><div class="col-6"><label>Description</label><input class="input" type="text" [(ngModel)]="description"></div><div class="col-3"><label>Performed By</label><input class="input" type="text" [(ngModel)]="performedBy"></div></div>
+  <div class="form-actions"><button class="btn" (click)="addEvent()">Add Event</button><a class="btn secondary" routerLink="/aircraft">Back to List</a></div>
+</div>
+<ng-template #notfound><div class="card">Aircraft not found</div></ng-template>

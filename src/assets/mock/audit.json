@@ -1,0 +1,20 @@
+[
+  {
+    "auditID": "AU-1001",
+    "aircraftID": "AT-1001",
+    "findings": "Safety inspection: minor issue in landing lights",
+    "date": "2025-12-12"
+  },
+  {
+    "auditID": "AU-1002",
+    "aircraftID": "AT-3001",
+    "findings": "Cargo latch check: all secured",
+    "date": "2025-12-10"
+  },
+  {
+    "auditID": "AU-1003",
+    "aircraftID": "AT-2001",
+    "findings": "Avionics upgrade verified",
+    "date": "2025-12-08"
+  }
+]

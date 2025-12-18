@@ -1,0 +1,33 @@
+
+<header class="app-header">
+  <div class="brand">
+    <a routerLink="/aircraft">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 12l6-2 4 2 4-2 6 2-6 2-4-2-4 2-6-2z" fill="#0b5ed7"/></svg>
+      <span>AeroTrack</span>
+    </a>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar">
+    <div class="group">
+      <div class="title">Core</div>
+      <a routerLink="/aircraft" routerLinkActive="active"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M2 12l6-2 4 2 4-2 6 2-6 2-4-2-4 2-6-2z" fill="currentColor"/></svg> Aircraft</a>
+      <a routerLink="/maintenance" routerLinkActive="active"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M4 4h16v2H4zm0 6h16v2H4zm0 6h16v2H4z" fill="currentColor"/></svg> Maintenance</a>
+    </div>
+    
+<div class="group">
+  <div class="title">Dashboards</div>
+  <a routerLink="/dashboards" routerLinkActive="active">Dashboards</a>
+</div>
+
+    <div class="group">
+      <div class="title">Ops</div>
+      <a routerLink="/spares" routerLinkActive="active"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2l4 4-4 4-4-4 4-4zm-6 10l4 4-4 4-4-4 4-4zm12 0l4 4-4 4-4-4 4-4z" fill="currentColor"/></svg> Spares</a>
+      <a routerLink="/audit" routerLinkActive="active"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M5 3h14v18H5z M8 6h8v2H8z M8 10h8v2H8z M8 14h8v2H8z" fill="currentColor"/></svg> Audit & Compliance</a>
+      <a routerLink="/reports" routerLinkActive="active"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M3 3h18v2H3zm0 6h12v2H3zm0 6h8v2H3z" fill="currentColor"/></svg> Reports</a>
+    </div>
+  </nav>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</div>

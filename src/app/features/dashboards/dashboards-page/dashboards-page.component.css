@@ -1,0 +1,4 @@
+
+.kpi-cards { display:grid; grid-template-columns: repeat(2, minmax(180px,1fr)); gap:1rem; }
+.kpi { padding:1rem; border-radius:12px; background:white; border:1px solid #e3e6ea; }
+.kpi .val { font-size:1.3rem; font-weight:700; }

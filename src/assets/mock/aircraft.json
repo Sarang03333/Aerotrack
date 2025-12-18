@@ -1,0 +1,44 @@
+[
+  {
+    "aircraftID": "AT-1001",
+    "model": "Boeing 737-800",
+    "category": "Commercial",
+    "complianceStatus": "Compliant",
+    "serviceHistory": []
+  },
+  {
+    "aircraftID": "AT-1002",
+    "model": "Airbus A320neo",
+    "category": "Commercial",
+    "complianceStatus": "Pending",
+    "serviceHistory": []
+  },
+  {
+    "aircraftID": "AT-2001",
+    "model": "Lockheed C-130J",
+    "category": "Defense",
+    "complianceStatus": "Compliant",
+    "serviceHistory": []
+  },
+  {
+    "aircraftID": "AT-3001",
+    "model": "Boeing 747-400F",
+    "category": "Cargo",
+    "complianceStatus": "Non-Compliant",
+    "serviceHistory": []
+  },
+  {
+    "aircraftID": "AT-3002",
+    "model": "Antonov An-124",
+    "category": "Cargo",
+    "complianceStatus": "Pending",
+    "serviceHistory": []
+  },
+  {
+    "aircraftID": "AT-2002",
+    "model": "Dassault Rafale",
+    "category": "Defense",
+    "complianceStatus": "Compliant",
+    "serviceHistory": []
+  }
+]

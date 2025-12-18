@@ -1,0 +1,63 @@
+
+<div class="card">
+  <h2 style="margin-top:0">Dashboards</h2>
+  <p style="color:#6c757d; margin-bottom:1rem">
+    All dashboards on a single page, powered by Chart.js (no wrappers).
+  </p>
+
+  <!-- Maintenance -->
+  <h3>Maintenance</h3>
+  <div class="grid" style="grid-template-columns: repeat(12, 1fr); gap: 1rem;">
+    <div class="col-6">
+      <div class="card">
+        <h4>Status (Bar)</h4>
+        <canvas #maintBar></canvas>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="card">
+        <h4>Status (Doughnut)</h4>
+        <canvas #maintDonut></canvas>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="card">
+        <h4>Trend (Tasks per Day)</h4>
+        <canvas #maintLine></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin -->
+  <h3 style="margin-top:2rem">Admin</h3>
+  <div class="grid" style="grid-template-columns: repeat(12, 1fr); gap: 1rem;">
+    <div class="col-6">
+      <div class="card">
+        <h4>Aircraft by Category</h4>
+        <canvas #aircatBar></canvas>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="card">
+        <h4>Compliance Status</h4>
+        <canvas #compDonut></canvas>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="card">
+        <h4>Inventory Health (Spares)</h4>
+        <canvas #sparesDonut></canvas>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="card">
+        <h4>Fleet KPIs (Mock)</h4>
+        <div class="kpi-cards">
+          <div class="kpi"><div>Maintenance Cost</div><div class="val">₹ {{ kpi.metrics.costAnalysis | number:'1.0-0' }}</div></div>
+          <div class="kpi"><div>Safety Performance</div><div class="val">{{ kpi.metrics.safetyPerformance }} / 100</div></div>
+          <div class="kpi"><div>Downtime (hrs)</div><div class="val">{{ kpi.metrics.downtimeHours }}</div></div>
+          <div class="kpi"><div>Generated</div><div class="val">{{ kpi.generatedDate }}</div></div>
+        </div>
+      </div>
+    </div>
+   </div>

@@ -1,0 +1,11 @@
+
+<div class="card">
+  <h2 style="margin-top:0">{{ isEdit ? 'Edit Audit Log' : 'Create Audit Log' }}</h2>
+  <div class="grid">
+    <div class="col-4"><label>Audit ID</label><input class="input" type="text" placeholder="Format: AA-0000" [formControl]="form.controls.auditID"></div>
+    <div class="col-4"><label>Aircraft ID</label><input class="input" type="text" [formControl]="form.controls.aircraftID"></div>
+    <div class="col-12"><label>Findings</label><input class="input" type="text" [formControl]="form.controls.findings"></div>
+    <div class="col-4"><label>Date</label><input class="input" type="date" [formControl]="form.controls.date"></div>
+  </div>
+  <div class="form-actions"><button class="btn" (click)="submit()">{{ isEdit ? 'Save Changes' : 'Create Audit' }}</button><a class="btn secondary" routerLink="/audit">Cancel</a></div>
+</div>
