@@ -1,4 +1,4 @@
-
+<!-- 
 <div class="toolbar">
   <div class="search-filters">
     <input class="input" type="text" placeholder="Search by TaskID or AircraftID" [(ngModel)]="term" (input)="refresh()" />
@@ -32,6 +32,106 @@
         </td>
       </tr>
       <tr *ngIf="tasks.length===0"><td colspan="5" style="text-align:center; color:var(--muted)">No tasks found</td></tr>
+    </tbody>
+  </table>
+</div> -->
+
+
+<div class="toolbar">
+  <div class="search-filters">
+    <input
+      class="input"
+      type="text"
+      placeholder="Search by TaskID or AircraftID"
+      [(ngModel)]="term"
+      (input)="refresh()"
+    />
+    <select [(ngModel)]="status" (change)="refresh()">
+      <option value="">All Status</option>
+      <option *ngFor="let s of statuses" [value]="s">{{ s }}</option>
+    </select>
+    <button class="btn secondary" (click)="clearFilters()">Reset</button>
+  </div>
+
+  <div style="display:flex; gap:8px; flex-wrap:wrap;">
+    <a class="btn" routerLink="/maintenance/new">+ New Task</a>
+    <select [(ngModel)]="selectedAircraftForEmergency" style="min-width:180px;">
+      <option value="">Emergency: select AircraftID</option>
+      <option *ngFor="let id of aircraftIDs" [value]="id">{{ id }}</option>
+    </select>
+    <button class="btn danger" (click)="createEmergency()">Create Emergency Task</button>
+  </div>
+</div>
+
+<div class="card">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Task ID</th>
+        <th>Aircraft ID</th>
+        <th>Scheduled Date</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let t of tasks">
+        <td>{{ t.taskID }}</td>
+        <td>{{ t.aircraftID }}</td>
+        <td>{{ t.scheduledDate }}</td>
+        <td>
+          <span
+            class="badge"
+            [ngClass]="{
+              'warn': t.status === 'PENDING',
+              'err': t.status === 'IN_PROGRESS',
+              'ok': t.status === 'COMPLETED'
+            }"
+          >
+            {{ t.status }}
+          </span>
+        </td>
+        <td>
+          <!-- Added flex container for spacing and min-width for uniform size -->
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button
+              class="btn"
+              style="min-width:90px;"
+              (click)="start(t.taskID)"
+              [disabled]="t.status !== 'PENDING'"
+            >
+              Start
+            </button>
+            <button
+              class="btn"
+              style="min-width:90px;"
+              (click)="complete(t.taskID)"
+              [disabled]="t.status !== 'IN_PROGRESS'"
+            >
+              Complete
+            </button>
+            <a
+              class="btn secondary"
+              style="min-width:90px; text-align:center;"
+              [routerLink]="['/maintenance', t.taskID, 'edit']"
+            >
+              Edit
+            </a>
+            <button
+              class="btn danger"
+              style="min-width:90px;"
+              (click)="remove(t.taskID)"
+            >
+              Delete
+            </button>
+          </div>
+        </td>
+      </tr>
+      <tr *ngIf="tasks.length === 0">
+        <td colspan="5" style="text-align:center; color:var(--muted)">
+          No tasks found
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>
