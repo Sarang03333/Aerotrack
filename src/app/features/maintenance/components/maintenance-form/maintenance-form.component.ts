@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
@@ -18,38 +19,20 @@ export class MaintenanceFormComponent implements OnInit {
   scheduledDate:['',[Validators.required]], 
   status:['PENDING' as TaskStatus,[Validators.required]] });
 
-  constructor(
-    private fb:FormBuilder,
-    private route:ActivatedRoute,
-    private router:Router,
-    private svc:MaintenanceService, 
-    private aircraftSvc:AircraftService
-      ){}
-
+  constructor(private fb:FormBuilder, private route:ActivatedRoute, private router:Router, private svc:MaintenanceService, private aircraftSvc:AircraftService){}
   ngOnInit()
   { this.aircraftSvc.list().subscribe(()=>
-    {
-       this.aircraftIDs=this.aircraftSvc.ids(); 
-    });
+    { this.aircraftIDs=this.aircraftSvc.ids(); });
      const id=this.route.snapshot.paramMap.get('id');
-      if(id){
-         const t=this.svc.getById(id);
-          if(t){ 
-            this.isEdit=true;
-            this.form.patchValue({
-               taskID:t.taskID,
-               aircraftID:t.aircraftID, 
-               scheduledDate:t.scheduledDate,
-               status:t.status
-              });
+      if(id){ const t=this.svc.getById(id); if(t){ this.isEdit=true;
+      this.form.patchValue({ taskID:t.taskID, aircraftID:t.aircraftID, scheduledDate:t.scheduledDate, status:t.status });
       this.form.controls.taskID.disable();
      }
      } }
 
   submit(){ if(this.form.invalid) return; 
     const v=this.form.getRawValue() as MaintenanceTask; 
-    try{ 
-      if(this.isEdit)
+    try{ if(this.isEdit)
       { 
         this.svc.update(v.taskID,{ aircraftID:v.aircraftID, scheduledDate:v.scheduledDate, status:v.status });
       } 
