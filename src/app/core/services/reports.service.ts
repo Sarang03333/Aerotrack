@@ -27,7 +27,7 @@ export class ReportsService {
   
 downloadCSV(report: FleetReport): Blob {
   const rows = [
-    ['ReportID', 'GeneratedDate', 'CostAnalysis', 'SafetyPerformance', 'DowntimeHours'],
+    ['ReportID' , 'GeneratedDate', 'CostAnalysis', 'SafetyPerformance', 'DowntimeHours'],
     [
       report.reportID,
       report.generatedDate,
