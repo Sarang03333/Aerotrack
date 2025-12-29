@@ -1,5 +1,5 @@
 
-
+/* ---------- Header ---------- */
 .app-header {
   position: relative;
   display: flex;
@@ -10,7 +10,7 @@
   border-bottom: 1px solid #e5e5e5;
 }
 
-
+/* Brand */
 .brand a {
   display: inline-flex;
   align-items: center;
@@ -24,7 +24,7 @@
   font-size: 18px;
 }
 
-
+/* Session info (top-right) */
 .session-info {
   position: absolute;
   right: 16px;
@@ -40,9 +40,9 @@
   font-weight: 700;
 }
 
-
+/* Red logout button */
 .logout-btn {
-  background-color: #dc3545;   
+  background-color: #dc3545;    /* “danger” red */
   color: #fff;
   border: none;
   padding: 6px 12px;
@@ -157,6 +157,7 @@
 }
 
 @media (max-width: 480px) {
+  /* On very small screens, keep only Logout visible if text feels crowded */
   .session-text {
     display: none;
   }

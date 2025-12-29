@@ -1,121 +1,28 @@
 
 <div class="toolbar">
   <div class="search-filters">
-    <input class="input" type="text" placeholder="Search by AuditID / Aircraft / Findings"
-           [(ngModel)]="term" (input)="refresh()" />
-    <input class="input" type="text" placeholder="Filter by AircraftID"
-           [(ngModel)]="aircraftFilter" (input)="refresh()" />
+    <input class="input" type="text" placeholder="Search by AuditID / Aircraft / Findings" [(ngModel)]="term" (input)="refresh()" />
+    <input class="input" type="text" placeholder="Filter by AircraftID" [(ngModel)]="aircraftFilter" (input)="refresh()" />
     <button class="btn secondary" (click)="clear()">Reset</button>
   </div>
-
   <div style="display:flex; gap:.5rem;">
     <a class="btn" routerLink="/audit/new">+ New Audit</a>
     <button class="btn accent" (click)="export()">Export Compliance CSV</button>
   </div>
 </div>
-
 <div class="card">
-  <table class="table audit-table">
-    <thead>
-      <tr>
-        <th>Audit ID</th>
-        <th>Aircraft ID</th>
-        <th>Findings</th>
-        <th>Status</th>
-        <th>Audit Created</th>
-        <th>Resolved On</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-
+  <table class="table">
+    <thead><tr><th>Audit ID</th><th>Aircraft ID</th><th>Findings</th><th>Date</th><th>Actions</th></tr></thead>
     <tbody>
-      <tr *ngFor="let x of logs; trackBy: trackByAuditId">
-        <td>{{ x.auditID }}</td>
-        <td>{{ x.aircraftID }}</td>
-        <td><div class="findings-cell">{{ x.findings }}</div></td>
-
-        
-        <td class="status-cell">
-          <select class="input status-select"
-                  [(ngModel)]="x.status"
-                  (ngModelChange)="onStatusSelect(x.auditID, $event)"
-                  name="status-{{ x.auditID }}">
-            <option [ngValue]="'PENDING'">PENDING</option>
-            <option [ngValue]="'RESOLVED'">RESOLVED</option>
-          </select>
+      <tr *ngFor="let x of logs">
+        <td>{{ x.auditID }}</td><td>{{ x.aircraftID }}</td><td>{{ x.findings }}</td><td>{{ x.date }}</td>
+        <td>
+          <a class="btn secondary" [routerLink]="['/audit', x.auditID, 'edit']">Edit</a>
+          <button class="btn" (click)="resolve(x.auditID)">Mark Resolved</button>
+          <button class="btn danger" (click)="remove(x.auditID)">Delete</button>
         </td>
-
-        <td class="date-cell">{{ x.date }}</td>
-        <td class="date-cell">{{ x.resolvedDate || '—' }}</td>
-
-        
-<td class="actions-cell">
-  <button class="btn edit-btn" (click)="openEdit(x)">Edit</button>
-  <button class="btn delete-btn" (click)="remove(x.auditID)">Delete</button>
-</td>
-
       </tr>
-
-      <tr *ngIf="logs.length === 0">
-        <td colspan="7" class="empty-row">No audit logs found</td>
-      </tr>
+      <tr *ngIf="logs.length===0"><td colspan="5" style="text-align:center; color:var(--muted)">No audit logs found</td></tr>
     </tbody>
   </table>
-</div>
-
-<!-- Inline modal in same template -->
-<div class="modal-backdrop"
-     *ngIf="editing as e"
-     (click)="cancelEdit()"
-     tabindex="0"
-     role="dialog"
-     aria-modal="true"
-     aria-label="Edit Audit">
-  <div class="modal-panel" (click)="$event.stopPropagation()">
-    <h3 class="modal-title">Edit Audit</h3>
-
-    <form #f="ngForm" (ngSubmit)="saveEdit()" class="form-grid">
-      <label>
-        <span>Audit ID</span>
-        <input class="input" type="text" [ngModel]="e.auditID" name="auditID" readonly />
-      </label>
-
-      <label>
-        <span>Aircraft ID</span>
-        <input class="input" type="text" [(ngModel)]="e.aircraftID" name="aircraftID" required />
-      </label>
-
-      <label class="full">
-        <span>Findings</span>
-        <textarea class="input" rows="4" [(ngModel)]="e.findings" name="findings" required></textarea>
-      </label>
-
-      <label>
-        <span>Status</span>
-        <select class="input"
-                [(ngModel)]="e.status"
-                name="status"
-                required
-                (ngModelChange)="onStatusSelect(e.auditID, $event)">
-          <option [ngValue]="'PENDING'">PENDING</option>
-          <option [ngValue]="'RESOLVED'">RESOLVED</option>
-        </select>
-      </label>
-
-      <label>
-        <span>Resolved On</span>
-        <input class="input" type="text" [ngModel]="e.resolvedDate || '—'" name="resolvedDate" readonly />
-      </label>
-
-      <label>
-        <span>Audit Created</span>
-        <input class="input" type="text" [ngModel]="e.date" name="date" readonly />
-      </label>
-
-      <div class="actions">
-        <button class="btn accent" type="submit" [disabled]="!f.valid">Save</button>
-        <button class="btn secondary" type="button" (click)="cancelEdit()">Cancel</button>
-      </div>
-    </form>
-  </div>
 </div>
