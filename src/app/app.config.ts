@@ -73,7 +73,6 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideHttpClient(),
-    // If you want route param binding to component inputs:
-    // withComponentInputBinding() can be added to provideRouter(...)
+
   ]
 };

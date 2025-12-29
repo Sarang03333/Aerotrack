@@ -1,4 +1,41 @@
+.dashboard-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 items per row */
+  grid-auto-rows: minmax(160px, auto);   /* shrink row height */
+  gap: 0.5rem;
+  padding: 0.5rem;
+  height: 100vh;        /* fit viewport */
+  box-sizing: border-box;
+  overflow: hidden;     /* prevent scroll */
+}
 
-.kpi-cards { display:grid; grid-template-columns: repeat(2, minmax(180px,1fr)); gap:1rem; }
-.kpi { padding:1rem; border-radius:12px; background:white; border:1px solid #e3e6ea; }
-.kpi .val { font-size:1.3rem; font-weight:700; }
+.card {
+  padding: 0.5rem;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #e3e6ea;
+}
+
+.card canvas {
+  width: 100% !important;
+  height: 100%px !important; /* smaller chart height */
+}
+
+.kpi-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 KPIs per row */
+  gap: 0.5rem;
+}
+
+.kpi {
+  padding: 0.5rem;
+  border-radius: 8px;
+  background: white;
+  border: 1px solid #e3e6ea;
+  font-size: 0.85rem;
+}
+
+.kpi .val {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
