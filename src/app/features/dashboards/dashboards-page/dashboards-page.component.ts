@@ -12,10 +12,11 @@ import { AuditService } from '../../../core/services/audit.service';
 import { ReportsService } from '../../../core/services/reports.service';
 
 @Component({
-    selector: 'app-dashboards-page',
-    imports: [CommonModule],
-    templateUrl: './dashboards-page.component.html',
-    styleUrls: ['./dashboards-page.component.css']
+  selector: 'app-dashboards-page',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './dashboards-page.component.html',
+  styleUrls: ['./dashboards-page.component.css']
 })
 export class DashboardsPageComponent implements AfterViewInit, OnDestroy {
 
@@ -68,9 +69,9 @@ export class DashboardsPageComponent implements AfterViewInit, OnDestroy {
         this.maintBarChart!.update();
 
         // Maintenance status doughnut
-        this.maintDonutChart!.data.labels = ['Pending', 'In Progress', 'Completed'];
-        (this.maintDonutChart!.data.datasets[0].data as number[]) = [pending, inprog, done];
-        this.maintDonutChart!.update();
+        // this.maintDonutChart!.data.labels = ['Pending', 'In Progress', 'Completed'];
+        // (this.maintDonutChart!.data.datasets[0].data as number[]) = [pending, inprog, done];
+        // this.maintDonutChart!.update();
 
         // Maintenance trend line (by scheduledDate)
         const perDay = new Map<string, number>();
@@ -132,11 +133,11 @@ export class DashboardsPageComponent implements AfterViewInit, OnDestroy {
     });
 
     // Status doughnut
-    this.maintDonutChart = new Chart(this.maintDonut.nativeElement, {
-      type: 'doughnut',
-      data: { labels: [], datasets: [{ data: [], backgroundColor: ['#ffe38a', '#feb27c', '#74c69d'], borderColor: ['#ffc107', '#fd7e14', '#198754'] }] },
-      options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
-    });
+    // this.maintDonutChart = new Chart(this.maintDonut.nativeElement, {
+    //   type: 'doughnut',
+    //   data: { labels: [], datasets: [{ data: [], backgroundColor: ['#ffe38a', '#feb27c', '#74c69d'], borderColor: ['#ffc107', '#fd7e14', '#198754'] }] },
+    //   options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
+    // });
 
     // Trend line
     this.maintLineChart = new Chart(this.maintLine.nativeElement, {
