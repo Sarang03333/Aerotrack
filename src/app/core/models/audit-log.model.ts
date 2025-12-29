@@ -1,7 +1,11 @@
 
+export type Status = 'PENDING' | 'RESOLVED';
+
 export interface AuditLog {
   auditID: string;
   aircraftID: string;
   findings: string;
-  date: string; // ISO date
+  status?: Status;
+  date: string;            
+  resolvedDate?: string;  
 }

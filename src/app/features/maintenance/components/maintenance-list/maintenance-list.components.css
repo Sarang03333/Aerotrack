@@ -30,12 +30,12 @@
 
 
 .btn {
-  display: flex;              /* or inline-flex */
-  flex-direction: column;     /* stack text vertically */
-  align-items: center;        /* center horizontally */
-  justify-content: center;    /* center vertically */
-  min-width: 90px;            /* consistent width */
-  height: 60px;               /* give enough height */
+  display: flex;              
+  flex-direction: column;     
+  align-items: center;        
+  justify-content: center;    
+  min-width: 90px;            
+  height: 60px;             
   text-align: center;
 }
 
