@@ -24,10 +24,8 @@
               "src/assets"
             ],
             "styles": [
-              
-"src/styles.css",
-  "node_modules/bootstrap/dist/css/bootstrap.min.css"
-
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [],
             "browser": "src/main.ts"
@@ -57,11 +55,23 @@
               "buildTarget": "aero-track:build:development"
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": false,
+    "schematicCollections": [
+      "angular-eslint"
+    ]
   }
 }
