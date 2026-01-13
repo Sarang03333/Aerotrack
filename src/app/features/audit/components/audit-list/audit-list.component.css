@@ -1,4 +1,4 @@
-
+/* 
 td.actions-cell {
   display: flex;
   flex-direction: row;
@@ -65,4 +65,4 @@ td.actions-cell .btn:focus-visible {
 .audit-table th:last-child,
 .audit-table td.actions-cell {
   min-width: 240px;
-}
+} */

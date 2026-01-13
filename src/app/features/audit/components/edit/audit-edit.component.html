@@ -1,0 +1,48 @@
+
+<div class="card edit-card" *ngIf="audit() as a">
+  <h2>Edit Audit</h2>
+
+  <form #f="ngForm" (ngSubmit)="save(f)" class="form-grid">
+    <label>
+      <span>Audit ID</span>
+      <input class="input" type="text" [ngModel]="a.auditID" name="auditID" readonly />
+    </label>
+
+    <label>
+      <span>Aircraft ID</span>
+      <input class="input" type="text" [(ngModel)]="a.aircraftID" name="aircraftID" required />
+    </label>
+
+    <label class="full">
+      <span>Findings</span>
+      <textarea class="input" rows="4" [(ngModel)]="a.findings" name="findings" required></textarea>
+    </label>
+
+    <label>
+      <span>Status</span>
+      <select class="input"
+              [(ngModel)]="a.status"
+              name="status"
+              required
+              (ngModelChange)="onStatusChange($event)">
+        <option [ngValue]="'PENDING'">PENDING</option>
+        <option [ngValue]="'RESOLVED'">RESOLVED</option>
+      </select>
+    </label>
+
+    <label>
+      <span>Resolved On</span>
+      <input class="input" type="text" [ngModel]="a.resolvedDate || '—'" name="resolvedDate" readonly />
+    </label>
+
+    <label>
+      <span>Audit Created</span>
+      <input class="input" type="text" [ngModel]="a.date" name="date" readonly />
+    </label>
+
+    <div class="actions">
+      <button class="btn accent" type="submit" [disabled]="!f.valid">Save</button>
+      <button class="btn secondary" type="button" (click)="cancel()">Cancel</button>
+    </div>
+  </form>
+</div>
