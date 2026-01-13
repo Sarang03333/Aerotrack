@@ -1,31 +1,30 @@
+
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuditService } from '../../../../core/services/audit.service';
 import { AuditLog, Status } from '../../../../core/models/audit-log.model';
- 
+
 @Component({
   selector: 'app-audit-list',
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './audit-list.component.html',
-  styleUrls: ['./audit-list.component.css']
+   styleUrls: ['./audit-list.component.css']
 })
 export class AuditListComponent implements OnInit {
   term = '';
   logs: AuditLog[] = [];
   aircraftFilter = '';
- 
-  editing: AuditLog | null = null;
- 
+
   constructor(private svc: AuditService) {}
- 
+
   ngOnInit() {
     this.refresh();
     this.svc.list().subscribe(() => this.refresh());
   }
- 
+
   refresh() {
     const t = (this.term || '').toLowerCase();
     const filterId = this.aircraftFilter || '';
@@ -38,64 +37,20 @@ export class AuditListComponent implements OnInit {
       return matchesTerm && matchesAircraft;
     });
   }
- 
-  clear() {
-     this.term = '';
-      this.aircraftFilter = '';
-       this.refresh();
-       }
- 
+
+  clear() { this.term = ''; this.aircraftFilter = ''; this.refresh(); }
+
   remove(id: string) {
     if (confirm(`Delete audit ${id}?`)) {
       this.svc.remove(id);
       this.refresh();
     }
   }
- 
 
   onStatusSelect(id: string, next: Status) {
-
-    if (this.svc.setStatus) {
-      this.svc.setStatus(id, next);
-    } 
-    else {
-      const today = new Date().toISOString().slice(0, 10);
-      const row = this.svc.getById(id);
-      if (!row) return;
-      const changes: Partial<AuditLog> =
-        next === 'RESOLVED'
-          ? { status: 'RESOLVED', resolvedDate: row.resolvedDate ?? today }
-          : { status: 'PENDING', resolvedDate: undefined };
-      this.svc.update(id, changes);
-    }
+    this.svc.setStatus(id, next);
     this.refresh();
   }
-
-  openEdit(row: AuditLog) {
-    this.editing = { ...row };
-  }
- 
-
-  saveEdit() {
-    if (!this.editing) return;
- 
-    const next: Status = this.editing.status ?? 'PENDING';
-    const today = new Date().toISOString().slice(0, 10);
- 
-    if (next === 'RESOLVED' && !this.editing.resolvedDate) {
-      this.editing.resolvedDate = today;
-    }
-    if (next === 'PENDING') {
-      this.editing.resolvedDate = undefined;
-    }
- 
-    this.svc.update(this.editing.auditID, this.editing);
-    this.editing = null;
-    this.refresh();
-  }
- 
-  cancelEdit() { this.editing = null; }
- 
   export() {
     const blob = this.svc.exportComplianceCSV();
     const url = URL.createObjectURL(blob);
@@ -103,6 +58,5 @@ export class AuditListComponent implements OnInit {
     a.href = url; a.download = 'compliance-report.csv'; a.click();
     URL.revokeObjectURL(url);
   }
- 
   trackByAuditId(_: number, item: AuditLog) { return item.auditID; }
 }
