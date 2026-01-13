@@ -1,64 +1,28 @@
 <div class="toolbar">
   <div class="search-filters">
-    <input
-      class="input"
-      type="text"
-      placeholder="Search by PartID or Name"
-      [(ngModel)]="term"
-      (input)="refresh()"
-    />
-    <label style="display: flex; align-items: center; gap: 0.35rem"
-      ><input type="checkbox" [(ngModel)]="lowOnly" (change)="refresh()" /> Show
-      Low Stock Only</label
-    >
+    <input class="input" type="text" placeholder="Search by PartID or Name" [(ngModel)]="term" (input)="refresh()" />
+    <label style="display:flex; align-items:center; gap:.35rem;"><input type="checkbox" [(ngModel)]="lowOnly" (change)="refresh()"> Show Low Stock Only</label>
     <button class="btn secondary" (click)="clear()">Reset</button>
   </div>
   <a class="btn" routerLink="/spares/new">+ Add Part</a>
 </div>
 <div class="card">
   <table class="table">
-    <thead>
-      <tr>
-        <th>Part ID</th>
-        <th>Name</th>
-        <th>Qty Available</th>
-        <th>Reorder Level</th>
-        <th>Last Updated</th>
-        <th>Status</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
+    <thead><tr><th>Part ID</th><th>Name</th><th>Qty Available</th><th>Reorder Level</th><th>Last Updated</th><th>Status</th><th>Actions</th></tr></thead>
     <tbody>
       <tr *ngFor="let p of parts">
-        <td>{{ p.partID }}</td>
-        <td>{{ p.name }}</td>
-        <td>{{ p.quantityAvailable }}</td>
-        <td>{{ p.reorderLevel }}</td>
-        <td>{{ p.lastUpdated }}</td>
-        <td>
-          <span class="badge" [ngClass]="{ warn: isLow(p), ok: !isLow(p) }">{{
-            isLow(p) ? "LOW" : "OK"
-          }}</span>
-        </td>
-        <td>
-          <button
-            class="btn accent"
-            (click)="replenish(p.partID)"
-            [disabled]="!isLow(p)"
-          >
-            Replenish
-          </button>
-          <a class="btn secondary" [routerLink]="['/spares', p.partID, 'edit']"
-            >Edit</a
-          >
-          <button class="btn danger" (click)="remove(p.partID)">Delete</button>
-        </td>
+        <td>{{ p.partID }}</td><td>{{ p.name }}</td><td>{{ p.quantityAvailable }}</td><td>{{ p.reorderLevel }}</td><td>{{ p.lastUpdated }}</td>
+        <td><span class="badge" [ngClass]="{ 'warn': isLow(p), 'ok': !isLow(p) }">{{ isLow(p) ? 'LOW' : 'OK' }}</span></td>
+<td>
+  <div style="display:flex; align-items:center; gap:14px;">
+    <button class="btn accent" (click)="replenish(p.partID)">Replenish</button>
+    <button class="btn" routerLink="/spares/{{p.partID}}/edit">Edit</button>
+    <button class="btn danger" (click)="remove(p.partID)">Delete</button>
+  </div>
+</td>
       </tr>
-      <tr *ngIf="parts.length === 0">
-        <td colspan="7" style="text-align: center; color: var(--muted)">
-          No parts found
-        </td>
-      </tr>
+      <tr *ngIf="parts.length===0"><td colspan="7" style="text-align:center; color:var(--muted)">No parts found</td></tr>
     </tbody>
   </table>
 </div>
+ 
