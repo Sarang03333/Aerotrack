@@ -1,49 +1,11 @@
 <div class="card">
-  <h2 style="margin-top: 0">
-    {{ isEdit ? "Edit Spare Part" : "Add Spare Part" }}
-  </h2>
+  <h2 style="margin-top:0">{{ isEdit ? 'Edit Spare Part' : 'Add Spare Part' }}</h2>
   <div class="grid">
-    <div class="col-4">
-      <label>Part ID</label
-      ><input
-        class="input"
-        type="text"
-        placeholder="Format: AA-0000"
-        [formControl]="form.controls.partID"
-      />
-    </div>
-    <div class="col-4">
-      <label>Name</label
-      ><input class="input" type="text" [formControl]="form.controls.name" />
-    </div>
-    <div class="col-4">
-      <label>Quantity Available</label
-      ><input
-        class="input"
-        type="number"
-        [formControl]="form.controls.quantityAvailable"
-      />
-    </div>
-    <div class="col-4">
-      <label>Reorder Level</label
-      ><input
-        class="input"
-        type="number"
-        [formControl]="form.controls.reorderLevel"
-      />
-    </div>
-    <div class="col-4">
-      <label>Last Updated</label
-      ><input
-        class="input"
-        type="date"
-        [formControl]="form.controls.lastUpdated"
-      />
-    </div>
+    <div class="col-4"><label>Part ID</label><input class="input" type="text" placeholder="Format: AA-0000" [formControl]="form.controls.partID"></div>
+    <div class="col-4"><label>Name</label><input class="input" type="text" [formControl]="form.controls.name"></div>
+    <div class="col-4"><label>Quantity Available</label><input class="input" type="number" [formControl]="form.controls.quantityAvailable"></div>
+    <div class="col-4"><label>Reorder Level</label><input class="input" type="number" [formControl]="form.controls.reorderLevel"></div>
+    <div class="col-4"><label>Last Updated</label><input class="input" type="date" [formControl]="form.controls.lastUpdated"></div>
   </div>
-  <div class="form-actions">
-    <button class="btn" (click)="submit()">
-      {{ isEdit ? "Save Changes" : "Add Part" }}</button
-    ><a class="btn secondary" routerLink="/spares">Cancel</a>
-  </div>
+  <div class="form-actions"><button class="btn" (click)="submit()">{{ isEdit ? 'Save Changes' : 'Add Part' }}</button><a class="btn secondary" routerLink="/spares">Cancel</a></div>
 </div>
