@@ -32,36 +32,39 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let a of aircraft">
-        <td>
-           {{a.aircraftID}}
-        
-        </td>
-        <td>{{ a.model }}</td>
-        <td>{{ a.category }}</td>
-        <td>
-          <span
-            class="badge"
-            [ngClass]="{
-              ok: a.complianceStatus === 'Compliant',
-              warn: a.complianceStatus === 'Pending',
-              err: a.complianceStatus === 'Non-Compliant'
-            }"
-            >{{ a.complianceStatus }}</span
-          >
-        </td>
-        <td>{{ lastServiceDate(a) }}</td>
-        <td>
-          <a
-            class="btn secondary"
-            [routerLink]="['/aircraft', a.aircraftID, 'edit']"
-            >Edit</a
-          >
-          <button class="btn danger" (click)="remove(a.aircraftID)">
-            Delete
-          </button>
-        </td>
-      </tr>
+     <tr *ngFor="let a of aircraft">
+  <td>
+    <a [routerLink]="['/aircraft', a.aircraftID]">
+      {{ a.aircraftID }}
+    </a>
+  </td>
+  <td>{{ a.model }}</td>
+  <td>{{ a.category }}</td>
+  <td>
+    <span
+      class="badge"
+      [ngClass]="{
+        ok: a.complianceStatus === 'Compliant',
+        warn: a.complianceStatus === 'Pending',
+        err: a.complianceStatus === 'Non-Compliant'
+      }"
+    >
+      {{ a.complianceStatus }}
+    </span>
+  </td>
+  <td>{{ lastServiceDate(a) }}</td>
+  <td>
+    <a
+      class="btn secondary"
+      [routerLink]="['/aircraft', a.aircraftID]"
+    >
+      Edit
+    </a>
+    <button class="btn danger" (click)="remove(a.aircraftID)">
+      Delete
+    </button>
+  </td>
+</tr>
       <tr *ngIf="aircraft.length === 0">
         <td colspan="6" style="text-align: center; color: var(--muted)">
           No aircraft found

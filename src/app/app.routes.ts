@@ -33,13 +33,13 @@ export const routes: Routes = [
       import('./features/aircraft/components/aircraft-form/aircraft-form.component')
         .then(m => m.AircraftFormComponent),
   },
-  // {
-  //   path: 'aircraft/:id',
-  //   canActivate: [AuthGuard],
-  //   loadComponent: () =>
-  //     import('./features/aircraft/components/aircraft-detail/aircraft-detail.component')
-  //       .then(m => m.AircraftDetailComponent),
-  // },
+  {
+    path: 'aircraft/:id',
+    canActivate: [AuthGuard],
+    loadComponent: () =>
+      import('./features/aircraft/components/aircraft-detail/aircraft-detail.component')
+        .then(m => m.AircraftDetailComponent),
+  },
   {
     path: 'aircraft/:id/edit',
     canActivate: [AuthGuard],
