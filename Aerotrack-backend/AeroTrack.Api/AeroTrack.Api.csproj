@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <!-- Target .NET 9 SDK/runtime -->
+    <TargetFramework>net9.0</TargetFramework>
+
+    <!-- Modern C# defaults -->
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <!-- Optional but helpful -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>1591</NoWarn> <!-- suppress missing XML doc warnings in dev -->
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- EF Core 9: SQL Server provider & Design-time tooling for migrations -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.*" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.*">
+      <!-- Design-time package shouldn't flow transitively -->
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+
+    <!-- ASP.NET Core Identity + EF Core store (net9 aligned) -->
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.*" />
+
+    <!-- JWT Bearer authentication handler (net9 aligned) -->
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.*" />
+
+    <!-- Swagger/OpenAPI (Swashbuckle) for API docs/testing -->
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.*" />
+
+    <!-- Optional: add explicitly if your environment still reports missing JWT types -->
+    <!-- <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.*" /> -->
+  </ItemGroup>
+
+</Project>

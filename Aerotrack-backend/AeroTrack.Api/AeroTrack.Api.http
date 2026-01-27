@@ -1,0 +1,6 @@
+@AeroTrack.Api_HostAddress = http://localhost:5168
+
+GET {{AeroTrack.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

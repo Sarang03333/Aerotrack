@@ -14,7 +14,7 @@
     <select [(ngModel)]="compliance" (change)="refresh()">
       <option value="">All Compliance</option>
       <option *ngFor="let c of compliances" [value]="c">{{ c }}</option>
-    </select>
+    </select>  
     <button class="btn secondary" (click)="clearFilters()">Reset</button>
   </div>
   <a class="btn" routerLink="/aircraft/new">+ Add Aircraft</a>
